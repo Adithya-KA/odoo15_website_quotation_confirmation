@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="website_order_confirm" inherit_id="sale.portal_my_quotations" name="Website_Confirm_option">
+            <xpath expr="//tr[hasclass('active')]/th[1]" position="before">
+                <th class="check-box">
+                </th>
+            </xpath>
+            <xpath expr="//t[@t-as='quotation']/tr/td[1]" position="before">
+                <td class="text-left">
+                    <input type="checkbox" class="check_box" t-att-id="quotation.id"/>
+                </td>
+            </xpath>
+            <xpath expr="//t[@t-set='title']" position="after">
+                <t t-if="quotations">
+                    <th>
+                        <button type="object" class="btn btn-primary" id="list_confirm_btn_id" name="button_confirm">
+                            Confirm
+                        </button>
+                    </th>
+                </t>
+            </xpath>
+        </template>
+        <template id="website_form_order_confirm" inherit_id="sale.sale_order_portal_template"
+                  name="website_form_button_confirm">
+            <xpath expr="//t[@t-set='title']/h2[1]" position="after">
+                <t t-if="sale_order.state == 'sent'">
+                <button type="object" class="btn btn-primary form_button_confirm" name="form_button"
+                        t-att-id="sale_order.id">
+                    Confirm
+                </button>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>
